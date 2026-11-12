@@ -1,0 +1,43 @@
+# Telegram 获取插件：读你用 Telegram Desktop「导出聊天记录」存下的 JSON，列出 Saved Messages。
+# 方法列表和 README 的方法表、usuyo 仓库 docs/platforms/routes.md 第 14 节的 telegram 一行对应（那里只有 export 一行）。
+# 交来的文件由宿主放进 ${INPUT}；插件不联网，也不写 ${INPUT}。
+protocol: 1
+id: usuyo-fetch/telegram
+kind: fetch
+name: Telegram
+description: 读你用 Telegram Desktop 导出的 JSON（result.json，或连文件夹压成的 zip），列出 Saved Messages 里的消息，取出文字和附件；只有链接的消息交给链接所属的平台去取
+version: 0.1.0
+license: MIT
+maintainers: [Fldicoahkiin]
+upstream:
+  - name: tg-parser（导出 JSON 的字段说明）
+    url: https://github.com/mdemyanov/tg-parser
+    license: MIT
+  - name: telegram-export-md（text_link、text_entities、file_name）
+    url: https://github.com/Retro-Zero/telegram-export-md
+    license: MIT
+platforms: [telegram]
+methods:
+  - id: export
+    name: Telegram Desktop 导出
+    access: official-export
+    login: none
+    account: none
+    capabilities:
+      list:
+        order: newest-first
+        files: ["result.json", "*.zip"]
+        reads: Telegram Desktop「导出聊天记录」选「机器可读的 JSON」得到的 result.json，或连导出文件夹一起压成的 zip
+      fetch:
+        input: [ref]
+        outputs: [text, images, media:video, media:audio, meta]
+permissions:
+  fs:
+    read: ["${INPUT}"]
+    write: ["${OUT}"]
+  network: {mode: none}
+  env: []
+  devices: []
+  gpu: false
+run:
+  command: ["${PLUGIN_DIR}/usuyo-fetch-telegram"]

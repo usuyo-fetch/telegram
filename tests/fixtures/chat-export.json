@@ -1,0 +1,27 @@
+{
+ "_fixture": "NOT MEASURED. Hand-written, invented content. Shape of a single-chat Telegram Desktop JSON export (name, type, id, messages at the top level) as documented by mdemyanov/tg-parser docs/TELEGRAM_FORMAT.md (MIT); see NOTES.md.",
+ "name": "Alice",
+ "type": "personal_chat",
+ "id": 3000003,
+ "messages": [
+  {
+   "id": 10,
+   "type": "message",
+   "date": "2026-09-01T10:00:00",
+   "date_unixtime": "1788256800",
+   "from": "Alice",
+   "from_id": "user3000003",
+   "text": "Try the new place on Elm Street"
+  },
+  {
+   "id": 11,
+   "type": "message",
+   "date": "2026-09-01T10:05:00",
+   "date_unixtime": "1788257100",
+   "from": "Test",
+   "from_id": "user1000001",
+   "text": "Will do",
+   "reply_to_message_id": 10
+  }
+ ]
+}
